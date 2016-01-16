@@ -20,10 +20,10 @@ namespace DeveloperNotes.Models
         [StringLength(71)]
         public string FullName { get; set; }
 
-        public virtual ICollection<Note> Notes { get; set; }
+        public ICollection<Note> Notes { get; set; }
 
-        public virtual ICollection<Note> EditedNotes { get; set; }
+        public ICollection<Note> EditedNotes { get; set; }
 
-        public virtual ICollection<Revision> Revisions { get; set; }
+        public ICollection<Revision> Revisions { get; set; }
     }
 }

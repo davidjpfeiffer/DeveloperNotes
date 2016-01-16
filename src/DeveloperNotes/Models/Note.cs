@@ -29,7 +29,7 @@ namespace DeveloperNotes.Models
         [Required]
         public int NumberOfRevisions { get; set; }
 
-        public virtual ICollection<Revision> Revisions { get; set; }
+        public ICollection<Revision> Revisions { get; set; }
 
         [StringLength(450)]
         public string CreatorId{ get; set; }
