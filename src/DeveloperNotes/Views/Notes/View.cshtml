@@ -1,0 +1,28 @@
+@model DeveloperNotes.Models.Note
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<h2>@Html.DisplayFor(model => model.Title)</h2>
+<hr />
+<div style="float: right;">
+    <a asp-action="Edit" asp-route-id="@Model.NoteId" class="btn btn-default">Edit</a>
+    <a href="/Notes/@Model.NoteId/Revisions" class="btn btn-default">Revisions</a>
+    <a asp-action="Delete" asp-route-id="@Model.NoteId" class="btn btn-default">Delete</a>
+    <a asp-action="Index" class="btn btn-default">Back to List</a>
+</div>
+
+<div>
+    <p>
+        @Html.DisplayFor(model => model.Content)</p>
+    <p>
+        Created By @Html.DisplayFor(model => model.Creator.FullName)
+    </p>
+    <p>
+        Published On @Html.DisplayFor(model => model.PublishDateUtc)
+    </p>
+    <p>
+        Last Edited On @Html.DisplayFor(model => model.LastEditedDateUtc)
+    </p>
+</div>

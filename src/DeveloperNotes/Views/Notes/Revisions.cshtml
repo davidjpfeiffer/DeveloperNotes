@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DeveloperNotes.Models.Revision>
+
+@{
+    ViewData["Title"] = "Revisions";
+}
+
+<h2>Revisions</h2>
+
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        //Dictionary<string, string> routeData = new Dictionary<string, string>();
+        //routeData.Add("noteId", @item.NoteId.ToString());
+        //routeData.Add("relativeReivisionId", @item.RelativeReivisionId.ToString());
+        <a href="/Notes/@item.NoteId/Revision/@item.RevisionNumber" class="list-group-item">
+            Revision #@Html.DisplayFor(modelItem => item.RevisionNumber) - Created by @Html.DisplayFor(modelItem => item.Creator.FullName) on @Html.DisplayFor(modelItem => item.PublishDateUtc)
+        </a>
+    }
+</div>

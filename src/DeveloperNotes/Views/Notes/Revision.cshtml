@@ -1,0 +1,25 @@
+﻿@model DeveloperNotes.Models.Revision
+
+@{
+    ViewData["Title"] = "Revision ";
+}
+
+<h2>Revision #@Html.DisplayFor(model => model.RevisionNumber)</h2>
+<hr />
+@*<div style="float: right;">
+    <a asp-action="Edit" asp-route-id="@Model.NoteId" class="btn btn-default">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.NoteId" class="btn btn-default">Delete</a>
+    <a asp-action="Index" class="btn btn-default">Back to List</a>
+</div>*@
+<h3>@Html.DisplayFor(model => model.Title)</h3>
+<div>
+    <p>
+        @Html.DisplayFor(model => model.Content)
+    </p>
+    <p>
+        Created By @Html.DisplayFor(model => model.Creator.FullName)
+    </p>
+    <p>
+        Published On @Html.DisplayFor(model => model.PublishDateUtc)
+    </p>
+</div>
