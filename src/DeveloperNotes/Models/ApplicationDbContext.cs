@@ -19,48 +19,42 @@ namespace DeveloperNotes.Models
                 .HasMany(n => n.Notes)
                 .WithOne(n => n.Creator)
                 .HasForeignKey(n => n.NoteId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
-
-            //builder.Entity<ApplicationUser>()
-            //    .HasMany(n => n.EditedNotes)
-            //    .WithOne(n => n.LastEditedByUser)
-            //    .HasForeignKey(n => n.LastEditedByUserId)
-            //    .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<ApplicationUser>()
                 .HasMany(n => n.Revisions)
                 .WithOne(n => n.Creator)
                 .HasForeignKey(n => n.RevisionId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Note>()
                 .HasMany(n => n.Revisions)
                 .WithOne(n => n.Note)
                 .HasForeignKey(n => n.RevisionId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Note>()
                 .HasOne(n => n.Creator)
                 .WithMany(n => n.Notes)
                 .HasForeignKey(n => n.CreatorId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
-
-            //builder.Entity<Note>()
-            //    .HasOne(n => n.LastEditedByUser)
-            //    .WithMany(n => n.Notes)
-            //    .HasForeignKey(n => n.LastEditedByUserId)
-            //    .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Revision>()
                 .HasOne(n => n.Creator)
                 .WithMany(n => n.Revisions)
                 .HasForeignKey(n => n.CreatorId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Revision>()
                 .HasOne(n => n.Note)
                 .WithMany(n => n.Revisions)
                 .HasForeignKey(n => n.NoteId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
         }
 

@@ -8,7 +8,7 @@ namespace DeveloperNotes.Models
     public class Note
     {
         public int NoteId { get; set; }
-        
+
         [Required]
         [StringLength(60, MinimumLength = 3)]
         public string Title { get; set; }
@@ -17,29 +17,22 @@ namespace DeveloperNotes.Models
         public string Content { get; set; }
 
         [Required]
-        [Display(Name = "Published")]
-        [DataType(DataType.Date)]
-        public DateTime PublishDateUtc { get; set; }
-
-        [Required]
-        [Display(Name = "Last Edited")]
-        [DataType(DataType.Date)]
-        public DateTime LastEditedDateUtc { get; set; }
-
-        [Required]
         public int NumberOfRevisions { get; set; }
 
         public ICollection<Revision> Revisions { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTime PublishDateUtc { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTime LastEditedDateUtc { get; set; }
 
         [StringLength(450)]
         public string CreatorId{ get; set; }
 
         public ApplicationUser Creator { get; set; }
-
-        //[StringLength(450)]
-        //public string LastEditedByUserId { get; set; }
-
-        //public ApplicationUser LastEditedByUser { get; set; }
 
         public Revision CreateNewRevision(string creatorId, int? restoredRevisionNumber = null)
         {
