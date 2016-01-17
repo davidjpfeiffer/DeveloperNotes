@@ -21,11 +21,11 @@ namespace DeveloperNotes.Models
                 .HasForeignKey(n => n.NoteId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<ApplicationUser>()
-                .HasMany(n => n.EditedNotes)
-                .WithOne(n => n.LastEditedByUser)
-                .HasForeignKey(n => n.LastEditedByUserId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder.Entity<ApplicationUser>()
+            //    .HasMany(n => n.EditedNotes)
+            //    .WithOne(n => n.LastEditedByUser)
+            //    .HasForeignKey(n => n.LastEditedByUserId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<ApplicationUser>()
                 .HasMany(n => n.Revisions)
@@ -45,11 +45,11 @@ namespace DeveloperNotes.Models
                 .HasForeignKey(n => n.CreatorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Note>()
-                .HasOne(n => n.LastEditedByUser)
-                .WithMany(n => n.Notes)
-                .HasForeignKey(n => n.LastEditedByUserId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder.Entity<Note>()
+            //    .HasOne(n => n.LastEditedByUser)
+            //    .WithMany(n => n.Notes)
+            //    .HasForeignKey(n => n.LastEditedByUserId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Revision>()
                 .HasOne(n => n.Creator)

@@ -77,7 +77,7 @@ namespace DeveloperNotes.Controllers
                 note.LastEditedDateUtc = DateTime.UtcNow;
 
                 _context.Note.Add(note);
-                _context.Revisions.Add(note.CreateNewRevision());
+                _context.Revisions.Add(note.CreateNewRevision(HttpContext.User.GetUserId()));
                 _context.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -112,10 +112,9 @@ namespace DeveloperNotes.Controllers
             if (ModelState.IsValid)
             {
                 note.LastEditedDateUtc = DateTime.UtcNow;
-                note.LastEditedByUserId = HttpContext.User.GetUserId();
 
                 _context.Update(note);
-                _context.Revisions.Add(note.CreateNewRevision());
+                _context.Revisions.Add(note.CreateNewRevision(HttpContext.User.GetUserId()));
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -202,14 +201,13 @@ namespace DeveloperNotes.Controllers
             }
 
             note.LastEditedDateUtc = DateTime.UtcNow;
-            note.LastEditedByUserId = HttpContext.User.GetUserId();
             note.Content = revision.Content;
             note.Title = revision.Title;
 
-            _context.Revisions.Add(note.CreateNewRevision(revisionNumber));
+            _context.Revisions.Add(note.CreateNewRevision(HttpContext.User.GetUserId(), revisionNumber));
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("View", new { id = note.NoteId });
         }
 
         // GET: Notes/5/Delete

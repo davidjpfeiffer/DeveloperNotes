@@ -36,15 +36,15 @@ namespace DeveloperNotes.Models
 
         public ApplicationUser Creator { get; set; }
 
-        [StringLength(450)]
-        public string LastEditedByUserId { get; set; }
+        //[StringLength(450)]
+        //public string LastEditedByUserId { get; set; }
 
-        public ApplicationUser LastEditedByUser { get; set; }
+        //public ApplicationUser LastEditedByUser { get; set; }
 
-        public Revision CreateNewRevision(int? restoredRevisionNumber = null)
+        public Revision CreateNewRevision(string creatorId, int? restoredRevisionNumber = null)
         {
             Revision newRevision = new Revision();
-            newRevision.CreatorId = this.LastEditedByUserId == null ? this.CreatorId : this.LastEditedByUserId;
+            newRevision.CreatorId = creatorId;
             newRevision.Content = this.Content;
             newRevision.NoteId = this.NoteId;
             newRevision.PublishDateUtc = this.PublishDateUtc;

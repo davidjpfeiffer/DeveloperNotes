@@ -16,9 +16,6 @@
         @Html.DisplayFor(model => model.Content)
     </p>
     <p>
-        Created By @Html.DisplayFor(model => model.Creator.FullName)
-    </p>
-    <p>
-        Published On @Html.DisplayFor(model => model.PublishDateUtc)
+        Updated By @Html.DisplayFor(model => model.Creator.FullName) On @Html.DisplayFor(model => model.PublishDateUtc)
     </p>
 </div>
