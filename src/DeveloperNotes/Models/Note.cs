@@ -41,7 +41,7 @@ namespace DeveloperNotes.Models
 
         public ApplicationUser LastEditedByUser { get; set; }
 
-        public Revision CreateNewRevision()
+        public Revision CreateNewRevision(int? restoredRevisionNumber = null)
         {
             Revision newRevision = new Revision();
             newRevision.CreatorId = this.LastEditedByUserId == null ? this.CreatorId : this.LastEditedByUserId;
@@ -50,6 +50,8 @@ namespace DeveloperNotes.Models
             newRevision.PublishDateUtc = this.PublishDateUtc;
             newRevision.Title = this.Title;
             newRevision.RevisionNumber = ++this.NumberOfRevisions;
+            newRevision.RestoredRevisionNumber = restoredRevisionNumber;
+
             return newRevision;
         }
     }

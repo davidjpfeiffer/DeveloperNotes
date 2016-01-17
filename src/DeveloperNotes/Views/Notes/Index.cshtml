@@ -11,7 +11,7 @@
 </p>
 
 <div class="list-group">
-    @foreach (var item in Model)
+    @foreach (var item in Model.Reverse())
     {
         <a asp-action="View" asp-route-id="@item.NoteId" class="list-group-item">@Html.DisplayFor(modelItem => item.Title)</a>
     }

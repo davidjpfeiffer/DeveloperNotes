@@ -75,8 +75,11 @@ namespace DeveloperNotes.Controllers
                 note.CreatorId = HttpContext.User.GetUserId();
                 note.PublishDateUtc = DateTime.UtcNow;
                 note.LastEditedDateUtc = DateTime.UtcNow;
+
                 _context.Note.Add(note);
+                _context.Revisions.Add(note.CreateNewRevision());
                 _context.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "ApplicationUser", note.CreatorId);
@@ -108,11 +111,11 @@ namespace DeveloperNotes.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Revisions.Add(note.CreateNewRevision());
-
                 note.LastEditedDateUtc = DateTime.UtcNow;
                 note.LastEditedByUserId = HttpContext.User.GetUserId();
+
                 _context.Update(note);
+                _context.Revisions.Add(note.CreateNewRevision());
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -151,7 +154,7 @@ namespace DeveloperNotes.Controllers
                 return HttpNotFound();
             }
 
-            Revision revision = this._context.Revisions.Single(m => m.NoteId == noteId && m.RevisionNumber == revisionNumber);
+            Revision revision = this._context.Revisions.Include(m => m.Creator).Single(m => m.NoteId == noteId && m.RevisionNumber == revisionNumber);
             
             if (revision == null)
             {
@@ -159,6 +162,54 @@ namespace DeveloperNotes.Controllers
             }
 
             return View(revision);
+        }
+
+        // GET: Notes/5/Revision/6
+        [HttpGet("{noteId}/Restore/{revisionNumber}")]
+        public IActionResult Restore(int? noteId, int? revisionNumber)
+        {
+            if (noteId == null || revisionNumber == null)
+            {
+                return HttpNotFound();
+            }
+
+            Revision revision = this._context.Revisions.Include(m => m.Creator).Single(m => m.NoteId == noteId && m.RevisionNumber == revisionNumber);
+
+            if (revision == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(revision);
+        }
+
+        // POST: Notes/5/Revision/6
+        [HttpPost("{noteId}/Restore/{revisionNumber}")]
+        [ValidateAntiForgeryToken]
+        public IActionResult RestoreConfirmed(int? noteId, int? revisionNumber)
+        {
+            if (noteId == null || revisionNumber == null)
+            {
+                return HttpNotFound();
+            }
+
+            Note note = this._context.Note.Single(m => m.NoteId == noteId);
+            Revision revision = this._context.Revisions.Single(m => m.NoteId == noteId && m.RevisionNumber == revisionNumber);
+
+            if (note == null || revision == null)
+            {
+                return HttpNotFound();
+            }
+
+            note.LastEditedDateUtc = DateTime.UtcNow;
+            note.LastEditedByUserId = HttpContext.User.GetUserId();
+            note.Content = revision.Content;
+            note.Title = revision.Title;
+
+            _context.Revisions.Add(note.CreateNewRevision(revisionNumber));
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // GET: Notes/5/Delete

@@ -10,7 +10,7 @@
     @foreach (var item in Model.Reverse())
     {
         <a asp-action="Revision" asp-route-noteId="@item.NoteId" asp-route-revisionNumber="@item.RevisionNumber" class="list-group-item">
-            Revision #@Html.DisplayFor(modelItem => item.RevisionNumber) - Created by @Html.DisplayFor(modelItem => item.Creator.FullName) on @Html.DisplayFor(modelItem => item.PublishDateUtc)
+            Revision #@Html.DisplayFor(modelItem => item.RevisionNumber) - @Html.DisplayFor(modelItem => item.Description)
         </a>
     }
 </div>

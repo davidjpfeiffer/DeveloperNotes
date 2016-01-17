@@ -1,0 +1,21 @@
+﻿@model DeveloperNotes.Models.Revision
+
+@{
+    ViewData["Title"] = "Restore Note";
+}
+
+<h2>Restore Revision #@Html.DisplayFor(model => model.RevisionNumber)</h2>
+<h3>Are you sure you want to restore the note to the following revision?</h3>
+<hr />
+
+<p>
+    <b>Note:</b> @Html.DisplayFor(model => model.Title)<br />
+    <b>Revision:</b> @Html.DisplayFor(model => model.Description)
+</p>
+
+<div>
+    <form asp-action="Restore" asp-route-noteId="@Model.NoteId" asp-route-revisionNumber="@Model.RevisionNumber">
+        <input type="submit" value="Restore" class="btn btn-default" />
+        <a asp-action="Revision" asp-route-id="@Model.NoteId" asp-route-revisionNumber="@Model.RevisionNumber" class="btn btn-default">Back to Revision</a>
+    </form>
+</div>
