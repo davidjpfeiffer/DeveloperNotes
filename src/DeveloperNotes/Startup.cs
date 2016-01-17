@@ -2,12 +2,15 @@
 using DeveloperNotes.Services;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MvcMovie.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace DeveloperNotes
 {
@@ -59,7 +62,7 @@ namespace DeveloperNotes
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -106,7 +109,36 @@ namespace DeveloperNotes
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            await CreateRoles(serviceProvider);
+
             SeedData.Initialize(app.ApplicationServices);
+        }
+
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            string[] roleNames = { "Admin", "Moderator", "ApprovedUser" };
+            IdentityResult roleResult;
+            foreach( var roleName in roleNames)
+            {
+                var roleExists = await RoleManager.RoleExistsAsync(roleName);
+                if (!roleExists)
+                {
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+
+            // Add Roles to a user manually
+            string userId = "";
+            if (userId != "")
+            {
+                var user = await UserManager.FindByIdAsync(userId);
+                await UserManager.AddToRoleAsync(user, "Admin");
+            }
+
+            // How to get a list of roles
+            var roles = RoleManager.Roles;
         }
 
         // Entry point for the application.
