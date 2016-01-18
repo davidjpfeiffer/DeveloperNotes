@@ -21,8 +21,7 @@ namespace DeveloperNotes.Models
         public string Content { get; set; }
 
         [Required]
-        [Display(Name = "Published")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime PublishDateUtc { get; set; }
 
         [NotMapped]

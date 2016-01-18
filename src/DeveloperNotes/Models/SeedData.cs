@@ -1,4 +1,5 @@
 ﻿using DeveloperNotes.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -14,6 +15,13 @@ namespace MvcMovie.Models
             if (context.Database == null)
             {
                 throw new Exception("DB is null");
+            }
+
+            if (!context.Roles.Any())
+            {
+                context.Roles.AddRange(
+                    
+                );
             }
 
             context.SaveChanges();
