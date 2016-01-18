@@ -44,7 +44,7 @@ namespace DeveloperNotes.Controllers
         //
         // GET: /Manage/Index
         [HttpGet]
-        public async Task<IActionResult> Index(ManageMessageId? message = null)
+        public IActionResult Index(ManageMessageId? message = null)
         {
             ViewData["StatusMessage"] =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -55,8 +55,37 @@ namespace DeveloperNotes.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
+            return View();
+        }
+
+        public IActionResult Messages()
+        {
+            var userId = HttpContext.User.GetUserId();
+            return View();
+        }
+
+        public IActionResult Notes()
+        {
+            var userId = HttpContext.User.GetUserId();
+            return View(_context.Note.Where(note => note.CreatorId == userId).ToList());
+        }
+
+        public IActionResult Notebooks()
+        {
+            var userId = HttpContext.User.GetUserId();
+            return View();
+        }
+
+        public IActionResult Admin()
+        {
+            var userId = HttpContext.User.GetUserId();
+            return View();
+        }
+
+        public async Task<IActionResult> Settings()
+        {
             var user = await GetCurrentUserAsync();
-            var model = new IndexViewModel
+            var model = new SettingsViewModel
             {
                 HasPassword = await _userManager.HasPasswordAsync(user),
                 PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
@@ -65,12 +94,6 @@ namespace DeveloperNotes.Controllers
                 BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user)
             };
             return View(model);
-        }
-
-        public IActionResult Notes()
-        {
-            var userId = HttpContext.User.GetUserId();
-            return View(_context.Note.Where(note => note.CreatorId == userId).ToList());
         }
 
         //

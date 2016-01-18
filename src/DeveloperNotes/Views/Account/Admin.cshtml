@@ -1,6 +1,4 @@
-﻿@model IEnumerable<DeveloperNotes.Models.Note>
-
-@{
+﻿@{
     ViewData["Title"] = "Account";
 }
 
@@ -10,17 +8,12 @@
     <ul class="nav nav-pills nav-stacked col-sm-2">
         <li role="presentation"><a asp-action="Index">Home</a></li>
         <li role="presentation"><a asp-action="Messages">Messages <span class="badge">4</span></a></li>
-        <li role="presentation" class="active"><a asp-action="Notes">My Notes</a></li>
+        <li role="presentation"><a asp-action="Notes">My Notes</a></li>
         <li role="presentation"><a asp-action="Notebooks">My Notebooks</a></li>
-        <li role="presentation"><a asp-action="Admin">Admin <span class="badge">4</span></a></li>
+        <li role="presentation" class="active"><a asp-action="Admin">Admin <span class="badge">4</span></a></li>
         <li role="presentation"><a asp-action="Settings">Settings</a></li>
     </ul>
     <div class="col-sm-10">
-        <div class="list-group">
-            @foreach (var item in Model.Reverse())
-            {
-                <a asp-action="View" asp-route-id="@item.NoteId" class="list-group-item">@Html.DisplayFor(modelItem => item.Title)</a>
-            }
-        </div>
+
     </div>
 </div>

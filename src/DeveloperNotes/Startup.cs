@@ -118,7 +118,7 @@ namespace DeveloperNotes
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            string[] roleNames = { "Admin", "Moderator", "ApprovedUser" };
+            string[] roleNames = { "Super", "Admin", "Moderator", "Author" };
             IdentityResult roleResult;
             foreach( var roleName in roleNames)
             {
@@ -129,12 +129,13 @@ namespace DeveloperNotes
                 }
             }
 
-            // Add Roles to a user manually
+            // How to add a role to a user
             string userId = "";
-            if (userId != "")
+            string roleId = "";
+            if (userId != "" && roleId != "")
             {
                 var user = await UserManager.FindByIdAsync(userId);
-                await UserManager.AddToRoleAsync(user, "Admin");
+                await UserManager.AddToRoleAsync(user, roleId);
             }
 
             // How to get a list of roles
