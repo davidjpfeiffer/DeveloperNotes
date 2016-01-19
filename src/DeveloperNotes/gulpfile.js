@@ -40,8 +40,8 @@ gulp.task("concat:js", function () {
 
 gulp.task("concat:css", function () {
     return gulp.src([paths.css, "!" + paths.minCssDest, "!" + paths.concatCssDest])
-        .pipe(sass())
         .pipe(concat("site.css"))
+        .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest(paths.cssDest));
 });
 
@@ -63,7 +63,7 @@ gulp.task("min:css", ["concat:css"], function () {
 
 gulp.task("min", ["min:js", "min:css"]);
 
-gulp.task("watch", ["build"], function () {
+gulp.task("watch", ["min"], function () {
     gulp.watch(paths.js, ["min:js"]);
     gulp.watch(paths.css, ["min:css"]);
 });
