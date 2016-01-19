@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity;
 
 namespace DeveloperNotes.ViewModels.Account
 {
-    public class IndexViewModel
+    public class SettingsViewModel
     {
         public bool HasPassword { get; set; }
 

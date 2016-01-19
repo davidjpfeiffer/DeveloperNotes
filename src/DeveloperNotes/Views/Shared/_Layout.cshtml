@@ -38,12 +38,17 @@
                 </div>
             </div>
         </div>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; 2015 - DeveloperNotes</p>
-            </footer>
+        <div>
+            <div class="header">
+                <h2 class="container">@ViewData["Title"]</h2>
+            </div>
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; 2016 - DeveloperNotes</p>
+                </footer>
+            </div>
         </div>
 
         <environment names="Development">

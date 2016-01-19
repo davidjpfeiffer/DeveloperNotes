@@ -1,11 +1,26 @@
-﻿@model IndexViewModel
+﻿@model SettingsViewModel
 @{
-    ViewData["Title"] = "Manage your account";
+    ViewData["Title"] = "Account";
 }
 
 <h2>@ViewData["Title"]</h2>
 <p class="text-success">@ViewData["StatusMessage"]</p>
-<div>
+
+<div class="row">
+    <ul class="nav nav-pills nav-stacked col-sm-2">
+        <li role="presentation" class="active"><a asp-action="Index">Home</a></li>
+        <li role="presentation"><a asp-action="Messages">Messages <span class="badge">4</span></a></li>
+        <li role="presentation"><a asp-action="Notes">My Notes</a></li>
+        <li role="presentation"><a asp-action="Notebooks">My Notebooks</a></li>
+        <li role="presentation"><a asp-action="Admin">Admin <span class="badge">4</span></a></li>
+        <li role="presentation"><a asp-action="Settings">Settings</a></li>
+    </ul>
+    <div class="col-sm-10">
+
+    </div>
+</div>
+
+@*<div>
     <h4>Change your account settings</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -36,7 +51,7 @@
                 See <a href="http://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
                 for details on setting up this ASP.NET application to support two-factor authentication using SMS.
             </p>
-            @*@(Model.PhoneNumber ?? "None") [
+            @(Model.PhoneNumber ?? "None") [
                 @if (Model.PhoneNumber != null)
                 {
                     <a asp-controller="Account" asp-action="AddPhoneNumber">Change</a>
@@ -47,7 +62,7 @@
                 {
                     <a asp-controller="Manage" asp-action="AddPhoneNumber">Add</a>
                 }
-                ]*@
+                ]
         </dd>
 
         <dt>Two-Factor Authentication:</dt>
@@ -56,7 +71,7 @@
                 There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
                 for setting up this application to support two-factor authentication.
             </p>
-            @*@if (Model.TwoFactor)
+            @if (Model.TwoFactor)
                 {
                     <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" method="post" class="form-horizontal" role="form">
                         <text>
@@ -73,9 +88,9 @@
                             <button type="submit" class="btn btn-link">Enable</button>
                         </text>
                     </form>
-                }*@
+                }
         </dd>
         <dt>My Notes</dt>
         <dd><a asp-action="Notes">View My Notes</a></dd>
     </dl>
-</div>
+</div>*@
