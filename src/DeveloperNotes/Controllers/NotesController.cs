@@ -36,16 +36,16 @@ namespace DeveloperNotes.Controllers
         }
 
         // GET: Notes/5
-        [HttpGet("{id}")]
+        [HttpGet("{noteId}")]
         [AllowAnonymous]
-        public IActionResult View(int? id)
+        public IActionResult View(int? noteId)
         {
-            if (id == null)
+            if (noteId == null)
             {
                 return HttpNotFound();
             }
 
-            Note note = _context.Note.Include(n => n.Creator).Single(m => m.NoteId == id);
+            Note note = _context.Note.Include(n => n.Creator).Single(m => m.NoteId == noteId);
             if (note == null)
             {
                 return HttpNotFound();
@@ -87,15 +87,15 @@ namespace DeveloperNotes.Controllers
         }
 
         // GET: Notes/5/Edit
-        [HttpGet("{id}/Edit")]
-        public IActionResult Edit(int? id)
+        [HttpGet("{noteId}/Edit")]
+        public IActionResult Edit(int? noteId)
         {
-            if (id == null)
+            if (noteId == null)
             {
                 return HttpNotFound();
             }
 
-            Note note = _context.Note.Single(m => m.NoteId == id);
+            Note note = _context.Note.Single(m => m.NoteId == noteId);
             if (note == null)
             {
                 return HttpNotFound();
@@ -105,7 +105,7 @@ namespace DeveloperNotes.Controllers
         }
 
         // POST: Notes/5/Edit
-        [HttpPost("{id}/Edit")]
+        [HttpPost("{noteId}/Edit")]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Note note)
         {
@@ -119,7 +119,7 @@ namespace DeveloperNotes.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "ApplicationUser", note.CreatorId);
-            return View(note);
+            return View("View", note);
         }
 
         // GET: Notes/5/Revisions
@@ -211,15 +211,15 @@ namespace DeveloperNotes.Controllers
         }
 
         // GET: Notes/5/Delete
-        [HttpGet("{id}/Delete"), ActionName("Delete")]
-        public IActionResult Delete(int? id)
+        [HttpGet("{noteId}/Delete"), ActionName("Delete")]
+        public IActionResult Delete(int? noteId)
         {
-            if (id == null)
+            if (noteId == null)
             {
                 return HttpNotFound();
             }
 
-            Note note = _context.Note.Single(m => m.NoteId == id);
+            Note note = _context.Note.Single(m => m.NoteId == noteId);
             if (note == null)
             {
                 return HttpNotFound();
@@ -229,11 +229,11 @@ namespace DeveloperNotes.Controllers
         }
 
         // POST: Notes/5/Delete
-        [HttpPost("{id}/Delete"), ActionName("Delete")]
+        [HttpPost("{noteId}/Delete"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int noteId)
         {
-            Note note = _context.Note.Include(m => m.Revisions).Single(m => m.NoteId == id);
+            Note note = _context.Note.Include(m => m.Revisions).Single(m => m.NoteId == noteId);
 
             _context.Note.Remove(note);
             _context.SaveChanges();

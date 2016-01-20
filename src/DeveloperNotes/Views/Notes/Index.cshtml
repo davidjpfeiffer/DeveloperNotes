@@ -1,16 +1,25 @@
-@model IEnumerable<DeveloperNotes.Models.Note>
+﻿@model IEnumerable<DeveloperNotes.Models.Note>
 
 @{
     ViewData["Title"] = "Notes";
 }
 
+<div class="row well">
+    <div class="col-sm-10 text-left">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Notes...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Search</button>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-2 text-right">
+        <a asp-action="Create" class="btn btn-default">New Note</a>
+    </div>
+</div>
 <div class="list-group">
     @foreach (var item in Model.Reverse())
     {
-        <a asp-action="View" asp-route-id="@item.NoteId" class="list-group-item">@Html.DisplayFor(modelItem => item.Title)</a>
+        <a asp-action="View" asp-route-noteId="@item.NoteId" class="list-group-item">@Html.DisplayFor(modelItem => item.Title)</a>
     }
-</div>
-<hr />
-<div>
-    <a asp-action="Create" class="btn btn-default">Create New</a>
 </div>
