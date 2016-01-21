@@ -45,6 +45,8 @@ body {
   padding: 20px 40px;
   margin: 20px 100px;
   background: #eee; }
+  .note .note-content {
+    padding: 10px 0; }
   .note .meta {
     padding: 10px;
     background: #ddd; }
@@ -61,3 +63,6 @@ body {
     border-top: 3px solid #ccc;
     margin: 1em 0;
     padding: 0; }
+
+#textbox {
+  min-height: 500px; }
