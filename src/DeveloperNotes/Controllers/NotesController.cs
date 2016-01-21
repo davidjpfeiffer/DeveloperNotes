@@ -80,10 +80,11 @@ namespace DeveloperNotes.Controllers
                 _context.Revisions.Add(note.CreateNewRevision(HttpContext.User.GetUserId()));
                 _context.SaveChanges();
 
-                return RedirectToAction("Index");
+                return View("View", note);
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "ApplicationUser", note.CreatorId);
-            return View(note);
+
+            //ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "ApplicationUser", note.CreatorId);
+            return HttpBadRequest();
         }
 
         // GET: Notes/5/Edit
@@ -116,10 +117,11 @@ namespace DeveloperNotes.Controllers
                 _context.Update(note);
                 _context.Revisions.Add(note.CreateNewRevision(HttpContext.User.GetUserId()));
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return View("View", note);
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "ApplicationUser", note.CreatorId);
-            return View("View", note);
+
+            //ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "ApplicationUser", note.CreatorId);
+            return HttpBadRequest();
         }
 
         // GET: Notes/5/Revisions
@@ -207,7 +209,7 @@ namespace DeveloperNotes.Controllers
             _context.Revisions.Add(note.CreateNewRevision(HttpContext.User.GetUserId(), revisionNumber));
             _context.SaveChanges();
 
-            return RedirectToAction("View", new { id = note.NoteId });
+            return View("View", note);
         }
 
         // GET: Notes/5/Delete
