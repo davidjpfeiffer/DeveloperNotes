@@ -4,15 +4,26 @@
     ViewData["Title"] = "Delete Note";
 }
 
-<h3>Are you sure you want to delete this note?</h3>
+<div class="header">
+    <h1 class="container body-content">@ViewData["Title"]</h1>
+</div>
 
-<p>
-    INSERT NOTE HERE
-</p>
-
-<div>
-    <form asp-action="Delete">
-            <input type="submit" value="Delete" class="btn btn-default" />
-            <a asp-action="Index" class="btn btn-default">Back to List</a>
-    </form>
+<div class="container body-content">
+    <article class="note">
+        <h2>@Html.DisplayFor(model => model.Title)</h2>
+        <hr />
+        <div class="note-content">
+            @Html.Raw(Model.Content)
+        </div>
+        <p class="meta">Created By @Html.DisplayFor(model => model.Creator.FullName)</p>
+        <p class="meta">Published <time>@Html.DisplayFor(model => model.PublishDateUtc)</time></p>
+        @if (Model.PublishDateUtc != Model.LastEditedDateUtc)
+        {
+            <p class="meta">Last Updated <time>@Html.DisplayFor(model => model.LastEditedDateUtc)</time></p>
+        }
+        <form asp-action="Delete" class="text-right">
+            <input type="submit" value="Confirm Delete" class="btn btn-danger" />
+            <a asp-action="View" class="btn btn-default">Back to Note</a>
+        </form>
+    </article>
 </div>

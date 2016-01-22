@@ -1,26 +1,26 @@
-﻿var customToolbar = {
+﻿var insert = {
+    label: 'Insert',
     items: [
         {
-            label: 'Group',
-            items: [
-                {
-                    id: 'insert',
-                    label: 'Insert',
-                    items: ['link', 'table']
-                }
-            ]
-        },
+            id: 'insert',
+            label: 'Insert',
+            items: ['link', 'table', 'ul', 'ol']
+        }
+    ]
+}
+
+var tools = {
+    label: 'Tools',
+    items: ['find', 'removeformat', 'fullscreen']
+}
+
+var customToolbar = {
+    items: [
+        insert,
         'style',
         'emphasis',
-        'align',
-        {
-            label: 'Group',
-            items: ['undo', 'redo']
-        },
-        {
-            label: 'Group',
-            items: ['removeformat', 'fullscreen']
-        }
+        'undo',
+        tools
     ]
 };
 
@@ -29,9 +29,9 @@ var instantiateTextbox = function () {
         css: {
             styles: [
                 { rule: 'p' },
-                { rule: 'h3', text: 'Heading' },
+                { rule: 'h4', text: 'Heading' },
             ],
-            stylesheets: ['/lib/textboxio/resources/css/styles.css']
+            stylesheets: ['../css/styles.css']
         },
         paste: {
             style: 'clean'

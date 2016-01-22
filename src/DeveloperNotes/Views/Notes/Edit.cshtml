@@ -4,31 +4,36 @@
     ViewData["Title"] = "Edit Note";
 }
 
-<form asp-action="Edit">
-    <div class="form-horizontal">
-        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="NoteId" />
-        <input type="hidden" asp-for="PublishDateUtc" />
-        <input type="hidden" asp-for="LastEditedDateUtc" />
-        <input type="hidden" asp-for="CreatorId" />
-        <input type="hidden" asp-for="NumberOfRevisions" />
-        <div class="form-group">
-            <input asp-for="Title" class="form-control" placeholder="Note Title" />
-            <span asp-validation-for="Title" class="text-danger" />
-        </div>
-        <div class="form-group">
-            <textarea asp-for="Content" class="form-control" id="textbox">
-            </textarea>
-            <span asp-validation-for="Content" class="text-danger" />
-        </div>
-        <div class="form-group">
-            <div class="text-right">
-                <input type="submit" value="Save" class="btn btn-default" />
-                <a asp-action="View" asp-route-noteId="@Model.NoteId" class="btn btn-default">Back to Note</a>
+<div class="header">
+    <h1 class="container body-content">@ViewData["Title"]</h1>
+</div>
+
+<div class="container body-content">
+    <form asp-action="Edit">
+        <div class="form-horizontal">
+            <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NoteId" />
+            <input type="hidden" asp-for="PublishDateUtc" />
+            <input type="hidden" asp-for="LastEditedDateUtc" />
+            <input type="hidden" asp-for="CreatorId" />
+            <input type="hidden" asp-for="NumberOfRevisions" />
+            <div class="form-group">
+                <input asp-for="Title" class="form-control" placeholder="Note Title" />
+                <span asp-validation-for="Title" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <textarea asp-for="Content" class="form-control" id="textbox"></textarea>
+                <span asp-validation-for="Content" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <div class="text-right">
+                    <input type="submit" value="Save Changes" class="btn btn-primary" />
+                    <a asp-action="View" asp-route-noteId="@Model.NoteId" class="btn btn-default">Back to Note</a>
+                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
 
 @section Scripts {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

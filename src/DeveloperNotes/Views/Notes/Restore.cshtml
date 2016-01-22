@@ -4,18 +4,23 @@
     ViewData["Title"] = "Restore Revision #" + Model.RevisionNumber;
 }
 
-<h2></h2>
-<h3>Are you sure you want to restore the note to the following revision?</h3>
-<hr />
+<div class="header">
+    <h1 class="container body-content">@ViewData["Title"]</h1>
+</div>
 
-<p>
-    <b>Note:</b> @Html.DisplayFor(model => model.Title)<br />
-    <b>Revision:</b> @Html.DisplayFor(model => model.Description)
-</p>
-
-<div class="text-right">
-    <form asp-action="Restore" asp-route-noteId="@Model.NoteId" asp-route-revisionNumber="@Model.RevisionNumber">
-        <input type="submit" value="Restore" class="btn btn-default" />
-        <a asp-action="Revision" asp-route-noteId="@Model.NoteId" asp-route-revisionNumber="@Model.RevisionNumber" class="btn btn-default">Back to Revision</a>
-    </form>
+<div class="container body-content">
+    <article class="note">
+        <h2>@Html.DisplayFor(model => model.Title)</h2>
+        <hr />
+        <div class="note-content">
+            @Html.Raw(Model.Content)
+        </div>
+        <p class="meta">Updated By @Html.DisplayFor(model => model.Creator.FullName) On <time>@Html.DisplayFor(model => model.PublishDateUtc)</time></p>
+        <div class="text-right">
+            <form asp-action="Restore" asp-route-noteId="@Model.NoteId" asp-route-revisionNumber="@Model.RevisionNumber">
+                <input type="submit" value="Confirm Restore" class="btn btn-primary" />
+                <a asp-action="Revision" asp-route-noteId="@Model.NoteId" asp-route-revisionNumber="@Model.RevisionNumber" class="btn btn-default">Back to Revision</a>
+            </form>
+        </div>
+    </article>
 </div>
