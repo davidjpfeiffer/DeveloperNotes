@@ -68,22 +68,25 @@ namespace DeveloperNotes.Controllers
         // POST: Notes/Create
         [HttpPost("Create")]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Note note)
+        public IActionResult Create(NoteViewModel noteViewModel)
         {
             if (ModelState.IsValid)
             {
-                note.CreatorId = HttpContext.User.GetUserId();
-                note.PublishDateUtc = DateTime.UtcNow;
-                note.LastEditedDateUtc = DateTime.UtcNow;
+                Note newNote = new Note();
 
-                _context.Note.Add(note);
-                _context.Revisions.Add(note.CreateNewRevision(HttpContext.User.GetUserId()));
+                newNote.Title = noteViewModel.Title;
+                newNote.Content = noteViewModel.Content;
+                newNote.CreatorId = HttpContext.User.GetUserId();
+                newNote.PublishDateUtc = DateTime.UtcNow;
+                newNote.LastEditedDateUtc = DateTime.UtcNow;
+
+                _context.Note.Add(newNote);
+                _context.Revisions.Add(newNote.CreateNewRevision(HttpContext.User.GetUserId()));
                 _context.SaveChanges();
 
-                return View("View", note);
+                ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "ApplicationUser", newNote.CreatorId);
+                return RedirectToAction("View", new { noteId = newNote.NoteId });
             }
-
-            //ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "ApplicationUser", note.CreatorId);
             return HttpBadRequest();
         }
 
@@ -108,19 +111,23 @@ namespace DeveloperNotes.Controllers
         // POST: Notes/5/Edit
         [HttpPost("{noteId}/Edit")]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Note note)
+        public IActionResult Edit(NoteViewModel noteViewModel)
         {
             if (ModelState.IsValid)
             {
-                note.LastEditedDateUtc = DateTime.UtcNow;
+                Note existingNote = _context.Note.Single(n => n.NoteId == noteViewModel.NoteId);
 
-                _context.Update(note);
-                _context.Revisions.Add(note.CreateNewRevision(HttpContext.User.GetUserId()));
+                existingNote.Title = noteViewModel.Title;
+                existingNote.Content = noteViewModel.Content;
+                existingNote.LastEditedDateUtc = DateTime.UtcNow;
+
+                _context.Update(existingNote);
+                _context.Revisions.Add(existingNote.CreateNewRevision(HttpContext.User.GetUserId()));
                 _context.SaveChanges();
-                return View("View", note);
-            }
 
-            //ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "ApplicationUser", note.CreatorId);
+                ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "ApplicationUser", existingNote.CreatorId);
+                return RedirectToAction("View", new { noteId = existingNote.NoteId });
+            }
             return HttpBadRequest();
         }
 
@@ -209,7 +216,7 @@ namespace DeveloperNotes.Controllers
             _context.Revisions.Add(note.CreateNewRevision(HttpContext.User.GetUserId(), revisionNumber));
             _context.SaveChanges();
 
-            return View("View", note);
+            return RedirectToAction("View", new { noteId = note.NoteId });
         }
 
         // GET: Notes/5/Delete

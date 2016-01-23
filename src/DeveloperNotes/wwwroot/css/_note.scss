@@ -17,6 +17,11 @@
         margin: 0 0 15px 0;
     }
 
+    li {
+        font-size: 18px;
+        padding: 3px;
+    }
+
     h2 {
         font-size: 30px;
         font-weight: bold;
@@ -54,7 +59,5 @@
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-    .note {
-        max-width: 950px;
-    }
+
 }

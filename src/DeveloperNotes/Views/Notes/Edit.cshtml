@@ -13,10 +13,6 @@
         <div class="form-horizontal">
             <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="NoteId" />
-            <input type="hidden" asp-for="PublishDateUtc" />
-            <input type="hidden" asp-for="LastEditedDateUtc" />
-            <input type="hidden" asp-for="CreatorId" />
-            <input type="hidden" asp-for="NumberOfRevisions" />
             <div class="form-group">
                 <input asp-for="Title" class="form-control" placeholder="Note Title" />
                 <span asp-validation-for="Title" class="text-danger" />
