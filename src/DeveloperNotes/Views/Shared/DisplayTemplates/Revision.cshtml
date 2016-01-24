@@ -1,0 +1,10 @@
+﻿@model DeveloperNotes.Models.Revision
+
+<article class="note">
+    <h2>@Html.DisplayFor(model => model.Title)</h2>
+    <hr />
+    <div class="note-content">
+        @Html.Raw(Model.Content)
+    </div>
+    <p class="meta">Updated By @Html.DisplayFor(model => model.Creator.FullName) On <time>@Html.DisplayFor(model => model.PublishDateUtc)</time></p>
+</article>

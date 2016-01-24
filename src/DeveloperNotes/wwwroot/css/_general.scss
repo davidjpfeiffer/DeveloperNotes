@@ -3,6 +3,10 @@
     padding-bottom: 20px;
 }
 
+.row {
+    margin: 0 0 20px 0;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -14,7 +18,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    //max-width: 280px;
 }
 
 /* Carousel */
@@ -31,4 +35,8 @@ textarea {
     .carousel-caption {
         z-index: 10 !important;
     }
+}
+
+#textbox {
+    min-height: 500px;
 }

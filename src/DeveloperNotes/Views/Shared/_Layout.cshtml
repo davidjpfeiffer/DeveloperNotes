@@ -29,7 +29,7 @@
                     </button>
                     <a asp-controller="Home" asp-action="Index" class="navbar-brand">DeveloperNotes</a>
                 </div>
-                <div class="navbar-collapse collapse">
+                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a asp-controller="About" asp-action="Index">About</a></li>
                         <li><a asp-controller="Notes" asp-action="Index">Notes</a></li>
@@ -39,12 +39,9 @@
             </div>
         </div>
         <div>
-            <div class="header">
-                <h2 class="container">@ViewData["Title"]</h2>
-            </div>
+            @RenderBody()
+            <hr />
             <div class="container body-content">
-                @RenderBody()
-                <hr />
                 <footer>
                     <p>&copy; 2016 - DeveloperNotes</p>
                 </footer>

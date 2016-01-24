@@ -61,5 +61,7 @@ namespace DeveloperNotes.Models
         public DbSet<Note> Note { get; set; }
 
         public DbSet<Revision> Revisions { get; set; }
+
+        public DbSet<Notebook> Notebook { get; set; }
     }
 }

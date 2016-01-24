@@ -1,21 +1,26 @@
 ﻿@model DeveloperNotes.Models.Revision
 
 @{
-    ViewData["Title"] = "Revision ";
+    ViewData["Title"] = "Revision #" + Model.RevisionNumber;
 }
 
-<h2>Revision #@Html.DisplayFor(model => model.RevisionNumber)</h2>
-<hr />
-<div style="float: right;">
-    <a asp-action="Restore" asp-route-noteId="@Model.NoteId" asp-route-revisionNumber="@Model.RevisionNumber" class="btn btn-default">Restore</a>
-    <a asp-action="Revisions" asp-route-id="@Model.NoteId" class="btn btn-default">Back to Revisions</a>
+<div class="header">
+    <div class="container body-content">
+        <h1 class="">@ViewData["Title"]</h1>
+    </div>
 </div>
-<h3>@Html.DisplayFor(model => model.Title)</h3>
-<div>
-    <p>
-        @Html.DisplayFor(model => model.Content)
-    </p>
-    <p>
-        Updated By @Html.DisplayFor(model => model.Creator.FullName) On @Html.DisplayFor(model => model.PublishDateUtc)
-    </p>
+
+<div class="container body-content">
+    <div class="well float-container">
+        <div class="float-left">
+            <h6>Manage Revision</h6>
+        </div>
+
+        <div class="float-right">
+            <a asp-controller="Notes" asp-action="Restore" class="btn btn-default">Restore</a>
+            <a asp-controller="Notes" asp-action="Revisions" class="btn btn-default">Back to Revisions</a>
+        </div>
+    </div>
+
+    @Html.DisplayForModel(Model)
 </div>
