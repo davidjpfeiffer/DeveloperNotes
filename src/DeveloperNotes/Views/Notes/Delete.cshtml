@@ -5,25 +5,23 @@
 }
 
 <div class="header">
-    <h1 class="container body-content">@ViewData["Title"]</h1>
+    <div class="container body-content">
+        <h1 class="">@ViewData["Title"]</h1>
+    </div>
 </div>
 
 <div class="container body-content">
-    <article class="note">
-        <h2>@Html.DisplayFor(model => model.Title)</h2>
-        <hr />
-        <div class="note-content">
-            @Html.Raw(Model.Content)
+    <div class="well float-container">
+        <div class="float-left">
+            <h6>Are you sure?</h6>
         </div>
-        <p class="meta">Created By @Html.DisplayFor(model => model.Creator.FullName)</p>
-        <p class="meta">Published <time>@Html.DisplayFor(model => model.PublishDateUtc)</time></p>
-        @if (Model.PublishDateUtc != Model.LastEditedDateUtc)
-        {
-            <p class="meta">Last Updated <time>@Html.DisplayFor(model => model.LastEditedDateUtc)</time></p>
-        }
-        <form asp-action="Delete" class="text-right">
-            <input type="submit" value="Confirm Delete" class="btn btn-danger" />
-            <a asp-action="View" class="btn btn-default">Back to Note</a>
-        </form>
-    </article>
+        <div class="float-right">
+            <form asp-controller="Notes" asp-action="Delete" class="text-right">
+                <input type="submit" value="Confirm Delete" class="btn btn-danger" />
+                <a asp-action="View" class="btn btn-default">Back to Note</a>
+            </form>
+        </div>
+    </div>
+
+    @Html.DisplayForModel(Model)
 </div>

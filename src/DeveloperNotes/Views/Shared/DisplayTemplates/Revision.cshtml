@@ -7,8 +7,4 @@
         @Html.Raw(Model.Content)
     </div>
     <p class="meta">Updated By @Html.DisplayFor(model => model.Creator.FullName) On <time>@Html.DisplayFor(model => model.PublishDateUtc)</time></p>
-    <div class="text-right">
-        <a asp-action="Restore" class="btn btn-default">Restore</a>
-        <a asp-action="Revisions" class="btn btn-default">Back to Revisions</a>
-    </div>
 </article>

@@ -5,9 +5,22 @@
 }
 
 <div class="header">
-    <h1 class="container body-content">@ViewData["Title"]</h1>
+    <div class="container body-content">
+        <h1 class="">@ViewData["Title"]</h1>
+    </div>
 </div>
 
 <div class="container body-content">
+    <div class="well float-container">
+        <div class="float-left">
+            <h6>Manage Revision</h6>
+        </div>
+
+        <div class="float-right">
+            <a asp-controller="Notes" asp-action="Restore" class="btn btn-default">Restore</a>
+            <a asp-controller="Notes" asp-action="Revisions" class="btn btn-default">Back to Revisions</a>
+        </div>
+    </div>
+
     @Html.DisplayForModel(Model)
 </div>

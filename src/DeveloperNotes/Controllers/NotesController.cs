@@ -25,14 +25,25 @@ namespace DeveloperNotes.Controllers
         // GET: Notes
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Index()
+        public IActionResult Index(string q)
         {
-            var applicationDbContext = _context.Note.Include(n => n.Creator).ToList();
+            List<Note> notes;
 
-            applicationDbContext.ForEach(n => n.PublishDateUtc = n.PublishDateUtc.ToLocalTime());
-            applicationDbContext.ForEach(n => n.LastEditedDateUtc = n.LastEditedDateUtc.ToLocalTime());
+            if (String.IsNullOrEmpty(q))
+            {
+                notes = _context.Note.Include(n => n.Creator).ToList();
+            }
+            else
+            {
+                notes = _context.Note.Where(n => n.Title.Contains(q)).Include(n => n.Creator).ToList();
+            }
 
-            return View(applicationDbContext);
+            notes.ForEach(n => n.PublishDateUtc = n.PublishDateUtc.ToLocalTime());
+            notes.ForEach(n => n.LastEditedDateUtc = n.LastEditedDateUtc.ToLocalTime());
+            notes.Reverse();
+
+            ViewData["Query"] = q;
+            return View(notes);
         }
 
         // GET: Notes/5
@@ -163,7 +174,7 @@ namespace DeveloperNotes.Controllers
             }
 
             Revision revision = this._context.Revisions.Include(m => m.Creator).Single(m => m.NoteId == noteId && m.RevisionNumber == revisionNumber);
-            
+
             if (revision == null)
             {
                 return HttpNotFound();

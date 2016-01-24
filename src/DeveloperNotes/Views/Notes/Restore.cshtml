@@ -5,22 +5,24 @@
 }
 
 <div class="header">
-    <h1 class="container body-content">@ViewData["Title"]</h1>
+    <div class="container body-content">
+        <h1 class="">@ViewData["Title"]</h1>
+    </div>
 </div>
 
 <div class="container body-content">
-    <article class="note">
-        <h2>@Html.DisplayFor(model => model.Title)</h2>
-        <hr />
-        <div class="note-content">
-            @Html.Raw(Model.Content)
+    <div class="well float-container">
+        <div class="float-left">
+            <h6>Are you sure?</h6>
         </div>
-        <p class="meta">Updated By @Html.DisplayFor(model => model.Creator.FullName) On <time>@Html.DisplayFor(model => model.PublishDateUtc)</time></p>
-        <div class="text-right">
-            <form asp-action="Restore" asp-route-noteId="@Model.NoteId" asp-route-revisionNumber="@Model.RevisionNumber">
+
+        <div class="float-right">
+            <form asp-controller="Notes" asp-action="Restore" asp-route-noteId="@Model.NoteId" asp-route-revisionNumber="@Model.RevisionNumber">
                 <input type="submit" value="Confirm Restore" class="btn btn-primary" />
-                <a asp-action="Revision" asp-route-noteId="@Model.NoteId" asp-route-revisionNumber="@Model.RevisionNumber" class="btn btn-default">Back to Revision</a>
+                <a asp-controller="Notes" asp-action="Revision" asp-route-noteId="@Model.NoteId" asp-route-revisionNumber="@Model.RevisionNumber" class="btn btn-default">Back to Revision</a>
             </form>
         </div>
-    </article>
+    </div>
+
+    @Html.DisplayForModel(Model)
 </div>

@@ -5,11 +5,13 @@
 }
 
 <div class="header">
-    <h1 class="container body-content">@ViewData["Title"]</h1>
+    <div class="container body-content">
+        <h1 class="">@ViewData["Title"]</h1>
+    </div>
 </div>
 
 <div class="container body-content">
-    <form asp-action="Edit">
+    <form asp-controller="Notes" asp-action="Edit">
         <div class="form-horizontal">
             <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="NoteId" />
