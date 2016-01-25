@@ -1,7 +1,11 @@
 ﻿.note {
     padding: 20px 40px;
-    margin: 20px 100px;
     background: #eee;
+    margin: 15px auto;
+
+    .note-content {
+        padding: 10px 0;
+    }
 
     .meta {
         padding: 10px;
@@ -10,12 +14,26 @@
 
     p {
         font-size: 18px;
+        margin: 0 0 15px 0;
+    }
+
+    li {
+        font-size: 18px;
+        padding: 3px;
+    }
+
+    h2 {
+        font-size: 30px;
+        font-weight: bold;
+        margin: 15px 0;
     }
 
     h3 {
-        font-size: 30px;
+        font-size: 20px;
         font-weight: bold;
         margin: 10px 0;
+        padding: 10px 0;
+        border-bottom: 2px solid #ccc;
     }
 
     hr {
@@ -25,5 +43,21 @@
     border-top: 3px solid #ccc;
     margin: 1em 0;
     padding: 0; 
+    }
 }
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
 }

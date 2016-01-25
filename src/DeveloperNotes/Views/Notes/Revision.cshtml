@@ -4,12 +4,23 @@
     ViewData["Title"] = "Revision #" + Model.RevisionNumber;
 }
 
-<h3>@Html.DisplayFor(model => model.Title)</h3>
-<div>
-    <p>@Html.DisplayFor(model => model.Content)</p>
-    <p>Updated By @Html.DisplayFor(model => model.Creator.FullName) On <time>@Html.DisplayFor(model => model.PublishDateUtc)</time></p>
+<div class="header">
+    <div class="container body-content">
+        <h1 class="">@ViewData["Title"]</h1>
+    </div>
 </div>
-<div class="text-right">
-    <a asp-action="Restore" class="btn btn-default">Restore</a>
-    <a asp-action="Revisions" class="btn btn-default">Back to Revisions</a>
+
+<div class="container body-content">
+    <div class="well float-container">
+        <div class="float-left">
+            <h6>Manage Revision</h6>
+        </div>
+
+        <div class="float-right">
+            <a asp-controller="Notes" asp-action="Restore" class="btn btn-default">Restore</a>
+            <a asp-controller="Notes" asp-action="Revisions" class="btn btn-default">Back to Revisions</a>
+        </div>
+    </div>
+
+    @Html.DisplayForModel(Model)
 </div>

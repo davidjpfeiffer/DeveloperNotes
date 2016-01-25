@@ -4,14 +4,22 @@
     ViewData["Title"] = "Revisions";
 }
 
-<div class="list-group">
-    @foreach (var item in Model.Reverse())
-    {
-        <a asp-action="Revision" asp-route-revisionNumber="@item.RevisionNumber" class="list-group-item">
-            Revision #@Html.DisplayFor(modelItem => item.RevisionNumber) - @Html.DisplayFor(modelItem => item.Description)
-        </a>
-    }
+<div class="header">
+    <div class="container body-content">
+        <h1 class="">@ViewData["Title"]</h1>
+    </div>
 </div>
-<div class="text-right">
-    <a asp-action="View" class="btn btn-default">Back To Note</a>
+
+<div class="container body-content">
+    <div class="list-group">
+        @foreach (var item in Model.Reverse())
+        {
+            <a asp-controller="Notes" asp-action="Revision" asp-route-revisionNumber="@item.RevisionNumber" class="list-group-item">
+                Revision #@Html.DisplayFor(modelItem => item.RevisionNumber) - @Html.DisplayFor(modelItem => item.Description)
+            </a>
+        }
+    </div>
+    <div class="text-right">
+        <a asp-controller="Notes" asp-action="View" class="btn btn-default">Back To Note</a>
+    </div>
 </div>

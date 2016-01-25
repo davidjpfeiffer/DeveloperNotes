@@ -1,0 +1,64 @@
+﻿.float-container {
+
+    h6 {
+        margin: 0;
+        padding: 6px 0;
+        font-size: 31px;
+        font-weight: bold;
+    }
+
+    .float-left {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .float-right {
+        text-align: center;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 6px;
+    }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .float-container {
+        clear: both;
+        overflow: auto;
+
+        h6 {
+            padding: 0;
+        }
+
+        .float-left {
+            float: left;
+            display: inline;
+            max-width: 40%;
+            margin: 0;
+            text-align: left;
+        }
+
+        .float-right {
+            float: right;
+            display: inline;
+            max-width: 40%;
+            margin: 0;
+            text-align: left;
+        }
+
+        .btn {
+            width: inherit;
+            margin-bottom: inherit;
+        }
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
