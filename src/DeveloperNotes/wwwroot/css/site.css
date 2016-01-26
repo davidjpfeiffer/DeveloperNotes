@@ -49,25 +49,12 @@ body {
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
-.body-content {
-  padding-left: 15px;
-  padding-right: 15px; }
+.container {
+  padding: 0 15px; }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
-/* Carousel */
-.carousel-caption {
-  z-index: 10 !important; }
-
-.carousel-caption p {
-  font-size: 20px;
-  line-height: 1.4; }
-
-@media (min-width: 768px) {
-  .carousel-caption {
-    z-index: 10 !important; } }
-
-#textbox {
-  min-height: 500px; }
+.form-horizontal .form-group {
+  margin: 0 0 15px 0; }
 
 .navbar {
   border: none; }
@@ -83,16 +70,22 @@ body {
     color: #fff;
     font-size: 35px;
     font-weight: bold; }
-  .header .btn {
-    font-weight: bold;
-    padding: 8px 12px; }
   .header .btn-header {
     background: #008000;
     border: 1px solid #008000;
-    color: #000; }
+    color: #000;
+    font-weight: bold;
+    padding: 8px 12px; }
     .header .btn-header:hover {
       background: #198C19;
       border: 1px solid #198C19; }
+  .header.header-homepage {
+    text-align: center; }
+    .header.header-homepage h1 {
+      margin: 20px auto 40px auto; }
+    .header.header-homepage form {
+      max-width: 850px;
+      margin: 20px auto; }
 
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */

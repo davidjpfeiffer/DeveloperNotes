@@ -9,9 +9,8 @@
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.container {
+    padding: 0 15px;
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
@@ -21,22 +20,6 @@ textarea {
     //max-width: 280px;
 }
 
-/* Carousel */
-.carousel-caption {
-    z-index: 10 !important;
-}
-
-    .carousel-caption p {
-        font-size: 20px;
-        line-height: 1.4;
-    }
-
-@media (min-width: 768px) {
-    .carousel-caption {
-        z-index: 10 !important;
-    }
-}
-
-#textbox {
-    min-height: 500px;
+.form-horizontal .form-group {
+    margin: 0 0 15px 0;
 }

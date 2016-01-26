@@ -4,12 +4,12 @@
 }
 
 <div class="header">
-    <div class="container body-content">
+    <div class="container">
         <h1 class="">@ViewData["Title"]</h1>
     </div>
 </div>
 
-<div class="container body-content">
+<div class="container">
     <h3>Associate your @ViewData["LoginProvider"] account</h3>
 
     <form asp-controller="Account" asp-action="ExternalLoginConfirmation" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
