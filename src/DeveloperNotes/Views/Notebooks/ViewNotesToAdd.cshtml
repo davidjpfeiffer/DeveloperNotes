@@ -1,17 +1,12 @@
-@model IEnumerable<DeveloperNotes.Models.Notebook>
+﻿@model IEnumerable<DeveloperNotes.Models.Note>
 
 @{
-    ViewData["Title"] = "Notebooks";
+    ViewData["Title"] = "Add A Note To This Notebook";
 }
 
-<div class="header float-container">
+<div class="header">
     <div class="container">
-        <div class="float-left">
-            <h1 class="container">@ViewData["Title"]</h1>
-        </div>
-        <div class="float-right">
-            <a asp-controller="Notebooks" asp-action="Create" class="btn btn-header">New Notebook</a>
-        </div>
+        <h1 class="">@ViewData["Title"]</h1>
     </div>
 </div>
 
@@ -29,7 +24,7 @@
     <div class="list-group">
         @foreach (var item in Model)
         {
-            <a asp-controller="Notebooks" asp-action="View" asp-route-notebookId="@item.NotebookId" class="list-group-item">@Html.DisplayFor(modelItem => item.Name)</a>
+            <a asp-controller="Notebooks" asp-action="AddNote" asp-route-noteId="@item.NoteId" class="list-group-item">@Html.DisplayFor(modelItem => item.Title)</a>
         }
     </div>
 </div>

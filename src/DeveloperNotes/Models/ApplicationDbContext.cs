@@ -43,6 +43,9 @@ namespace DeveloperNotes.Models
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<Notebook>()
+                .HasMany(n => n.Notes);
+
             builder.Entity<Revision>()
                 .HasOne(n => n.Creator)
                 .WithMany(n => n.Revisions)
@@ -58,10 +61,10 @@ namespace DeveloperNotes.Models
                 .OnDelete(DeleteBehavior.Cascade);
         }
 
-        public DbSet<Note> Note { get; set; }
+        public DbSet<Note> Notes { get; set; }
 
         public DbSet<Revision> Revisions { get; set; }
 
-        public DbSet<Notebook> Notebook { get; set; }
+        public DbSet<Notebook> Notebooks { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace DeveloperNotes.Controllers
         [HttpGet]
         public IActionResult Index(string q)
         {
-            List<Note> results = _context.Note.Where(n => n.Title.Contains(q)).Include(n => n.Creator).ToList();
+            List<Note> results = _context.Notes.Where(n => n.Title.Contains(q)).Include(n => n.Creator).ToList();
 
             if (!String.IsNullOrEmpty(q))
             {

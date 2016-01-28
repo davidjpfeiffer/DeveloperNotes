@@ -1,7 +1,7 @@
-﻿@model DeveloperNotes.Models.Revision
+﻿@model DeveloperNotes.Models.Note
 
 @{
-    ViewData["Title"] = "Revision #" + Model.RevisionNumber;
+    ViewData["Title"] = "Add Note";
 }
 
 <div class="header">
@@ -13,12 +13,14 @@
 <div class="container">
     <div class="well float-container">
         <div class="float-left">
-            <h6>Manage Revision</h6>
+            <h6>Manage Notebook</h6>
         </div>
 
         <div class="float-right">
-            <a asp-controller="Notes" asp-action="Restore" class="btn btn-default">Restore</a>
-            <a asp-controller="Notes" asp-action="Revisions" class="btn btn-default">Back to Revisions</a>
+            <form asp-controller="Notebooks" asp-action="AddNoteConfirmed" asp-route-noteId="@Model.NoteId">
+                <input type="submit" value="Add This Note" class="btn btn-primary" />
+                <a asp-controller="Notebooks" asp-action="View" class="btn btn-default">Back to Notebook</a>
+            </form>
         </div>
     </div>
 
