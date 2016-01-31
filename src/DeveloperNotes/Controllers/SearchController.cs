@@ -23,16 +23,21 @@ namespace DeveloperNotes.Controllers
         [HttpGet]
         public IActionResult Index(string q)
         {
-            List<Note> results = _context.Notes.Where(n => n.Title.Contains(q)).Include(n => n.Creator).ToList();
+            List<Note> results;
 
-            if (!String.IsNullOrEmpty(q))
+            if (String.IsNullOrEmpty(q))
             {
-                results.ForEach(n => n.PublishDateUtc = n.PublishDateUtc.ToLocalTime());
-                results.ForEach(n => n.LastEditedDateUtc = n.LastEditedDateUtc.ToLocalTime());
-                results.Reverse();
+                results = _context.Notes.Include(n => n.Creator).ToList();
+            }
+            else
+            {
+                results = _context.Notes.Where(n => n.Title.Contains(q)).Include(n => n.Creator).ToList();
             }
 
-            ViewData["Query"] = q;
+            results.ForEach(n => n.PublishDateUtc = n.PublishDateUtc.ToLocalTime());
+            results.ForEach(n => n.LastEditedDateUtc = n.LastEditedDateUtc.ToLocalTime());
+            results.Reverse();
+
             return View(results);
         }
     }

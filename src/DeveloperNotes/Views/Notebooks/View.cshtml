@@ -2,12 +2,14 @@
 
 @{
     ViewData["Title"] = Model.Name;
+    ViewData["Description"] = Model.Description;
 }
 
 <div class="header float-container">
     <div class="container">
         <div class="float-left">
             <h1 class="container">@ViewData["Title"]</h1>
+            <p>@ViewData["Description"]</p>
         </div>
         <div class="float-right">
             <a asp-controller="Notebooks" asp-action="ViewNotesToAdd" class="btn btn-header">Add Note</a>
@@ -16,9 +18,9 @@
 </div>
 
 <div class="container">
-    <div class="well float-container">
+    <div class="manage-content float-container">
         <div class="float-left">
-            <h6>Manage Notebook</h6>
+            <h2>Manage Notebook</h2>
         </div>
 
         <div class="float-right">

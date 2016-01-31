@@ -19,6 +19,6 @@ CKEDITOR.editorConfig = function (config) {
     config.autoGrow_bottomSpace = 25;
     config.autoGrow_minHeight = 400;
     config.autoGrow_onStartup = true;
-    config.format_tags = 'p;h3';
+    config.format_tags = 'p;h4';
     config.forcePasteAsPlainText = true;
 };
