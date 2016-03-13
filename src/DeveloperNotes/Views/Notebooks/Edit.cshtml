@@ -4,31 +4,33 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="header">
+    <div class="container">
+        <h1 class="">@ViewData["Title"]</h1>
+    </div>
+</div>
 
-<form asp-action="Edit">
-    <div class="form-horizontal">
-        <h4>Notebook</h4>
-        <hr />
-        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="NotebookId" />
-        <div class="form-group">
-            <label asp-for="Description" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Description" class="form-control" />
+<div class="container">
+    <form asp-controller="Notebooks" asp-action="Edit">
+        <div class="form-horizontal">
+            <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NotebookId" />
+            <div class="form-group">
+                <input asp-for="Name" class="form-control input-lg" placeholder="Notebook Name" />
+                <span asp-validation-for="Name" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <textarea asp-for="Description" class="form-control input-lg" placeholder="Description"></textarea>
                 <span asp-validation-for="Description" class="text-danger" />
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group">
+                <div class="text-right">
+                    <input type="submit" value="Save Changes" class="btn btn-primary" />
+                    <a asp-action="View" asp-route-notebookId="@Model.NotebookId" class="btn btn-default">Back to Notebook</a>
+                </div>
             </div>
         </div>
-    </div>
-</form>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+    </form>
 </div>
 
 @section Scripts {

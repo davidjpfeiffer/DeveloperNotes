@@ -1,12 +1,5 @@
 ﻿.float-container {
 
-    h6 {
-        margin: 0;
-        padding: 6px 0;
-        font-size: 31px;
-        font-weight: bold;
-    }
-
     .float-left {
         margin-bottom: 20px;
         text-align: center;
@@ -28,14 +21,10 @@
         clear: both;
         overflow: auto;
 
-        h6 {
-            padding: 0;
-        }
-
         .float-left {
             float: left;
             display: inline;
-            max-width: 40%;
+            max-width: 60%;
             margin: 0;
             text-align: left;
         }

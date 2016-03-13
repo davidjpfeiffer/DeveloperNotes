@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DeveloperNotes.Models.Note>
+
+@{
+    ViewData["Title"] = "Add A Note To This Notebook";
+}
+
+<div class="header">
+    <div class="container">
+        <h1 class="">@ViewData["Title"]</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="well">
+        <form asp-controller="Search" asp-action="Notes" method="get">
+            <div class="input-group">
+                <input name="q" type="text" class="form-control" placeholder="Search..." value="@ViewData["Query"]" />
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">Search</button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="list-group">
+        @foreach (var item in Model)
+        {
+            <a asp-controller="Notebooks" asp-action="AddNote" asp-route-noteId="@item.NoteId" class="list-group-item">@Html.DisplayFor(modelItem => item.Title)</a>
+        }
+    </div>
+</div>

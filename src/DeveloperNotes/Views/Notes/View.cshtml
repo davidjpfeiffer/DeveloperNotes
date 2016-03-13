@@ -1,19 +1,19 @@
 @model DeveloperNotes.Models.Note
 
 @{
-    ViewData["Title"] = Model.Title;
+    ViewData["Title"] = "Notes";
 }
 
 <div class="header">
-    <div class="container body-content">
+    <div class="container">
         <h1 class="">@ViewData["Title"]</h1>
     </div>
 </div>
 
-<div class="container body-content">
-    <div class="well float-container">
+<div class="container">
+    <div class="manage-content float-container">
         <div class="float-left">
-            <h6>Manage Note</h6>
+            <h2>Manage Note</h2>
         </div>
 
         <div class="float-right">
@@ -25,3 +25,9 @@
 
     @Html.DisplayForModel(Model)
 </div>
+
+@section Scripts {
+    <link href="~/lib/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" rel="stylesheet" />
+    <script src="~/lib/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+    <script src="~/lib/ckeditor/initTarget.js"></script>
+}

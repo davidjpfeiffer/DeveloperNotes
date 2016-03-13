@@ -67,7 +67,7 @@ namespace DeveloperNotes.Controllers
         public IActionResult Notes()
         {
             var userId = HttpContext.User.GetUserId();
-            return View(_context.Note.Where(note => note.CreatorId == userId).ToList());
+            return View(_context.Notes.Where(note => note.CreatorId == userId).ToList());
         }
 
         public IActionResult Notebooks()

@@ -5,9 +5,9 @@
 }
 
 <div class="header float-container">
-    <div class="container body-content">
+    <div class="container">
         <div class="float-left">
-            <h1 class="container body-content">@ViewData["Title"]</h1>
+            <h1 class="container">@ViewData["Title"]</h1>
         </div>
         <div class="float-right">
             <a asp-controller="Notes" asp-action="Create" class="btn btn-header">New Note</a>
@@ -15,11 +15,11 @@
     </div>
 </div>
 
-<div class="container body-content">
+<div class="container">
     <div class="well">
-        <form asp-controller="Search" asp-action="Notes" method="get">
+        <form asp-controller="Notes" asp-action="Search" method="get">
             <div class="input-group">
-                <input name="q" type="text" class="form-control" placeholder="Search..." value="@ViewData["Query"]" />
+                <input name="q" type="text" class="form-control" placeholder="Search..." />
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-default">Search</button>
                 </span>

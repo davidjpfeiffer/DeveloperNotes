@@ -4,12 +4,12 @@
 }
 
 <div class="header">
-    <div class="container body-content">
+    <div class="container">
         <h1 class="">@ViewData["Title"]</h1>
     </div>
 </div>
 
-<div class="container body-content">
+<div class="container">
     <form asp-controller="Account" asp-action="SendCode" asp-route-returnurl="@Model.ReturnUrl" method="post" class="form-horizontal" role="form">
         <input asp-for="RememberMe" type="hidden" />
         <div class="row">

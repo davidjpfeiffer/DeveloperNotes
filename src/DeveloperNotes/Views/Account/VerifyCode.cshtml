@@ -4,12 +4,12 @@
 }
 
 <div class="header">
-    <div class="container body-content">
+    <div class="container">
         <h1 class="">@ViewData["Title"]</h1>
     </div>
 </div>
 
-<div class="container body-content">
+<div class="container">
     <form asp-controller="Account" asp-action="VerifyCode" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
         <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
         <input asp-for="Provider" type="hidden" />

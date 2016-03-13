@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@ViewData["Title"] - DeveloperNotes</title>
+        <meta name="description" content="@ViewData["Description"]" />
 
         <environment names="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -33,6 +34,7 @@
                     <ul class="nav navbar-nav">
                         <li><a asp-controller="About" asp-action="Index">About</a></li>
                         <li><a asp-controller="Notes" asp-action="Index">Notes</a></li>
+                        <li><a asp-controller="Notebooks" asp-action="Index">Notebooks</a></li>
                     </ul>
                     @await Html.PartialAsync("_LoginPartial")
                 </div>
@@ -40,8 +42,8 @@
         </div>
         <div>
             @RenderBody()
-            <hr />
-            <div class="container body-content">
+            <div class="container">
+                <hr />
                 <footer>
                     <p>&copy; 2016 - DeveloperNotes</p>
                 </footer>

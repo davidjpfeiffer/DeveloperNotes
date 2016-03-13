@@ -25,17 +25,32 @@ namespace DeveloperNotes.Controllers
         // GET: Notes
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Index(string q)
+        public IActionResult Index()
+        {
+            List<Note> notes = _context.Notes.Include(n => n.Creator).ToList();
+
+            notes.ForEach(n => n.PublishDateUtc = n.PublishDateUtc.ToLocalTime());
+            notes.ForEach(n => n.LastEditedDateUtc = n.LastEditedDateUtc.ToLocalTime());
+            notes.Reverse();
+
+            return View(notes);
+        }
+
+        // GET: Notes/Search
+        [HttpGet("Search")]
+        [AllowAnonymous]
+        public IActionResult Search(string q)
         {
             List<Note> notes;
 
             if (String.IsNullOrEmpty(q))
             {
-                notes = _context.Note.Include(n => n.Creator).ToList();
+                notes = new List<Note>();
             }
             else
             {
-                notes = _context.Note.Where(n => n.Title.Contains(q)).Include(n => n.Creator).ToList();
+                string[] queries = q.Split(' ', '-');
+                notes = _context.Notes.Include(n => n.Creator).Where(n => customContains(n.Title, queries)).ToList();
             }
 
             notes.ForEach(n => n.PublishDateUtc = n.PublishDateUtc.ToLocalTime());
@@ -56,7 +71,7 @@ namespace DeveloperNotes.Controllers
                 return HttpNotFound();
             }
 
-            Note note = _context.Note.Include(n => n.Creator).Single(m => m.NoteId == noteId);
+            Note note = _context.Notes.Include(n => n.Creator).Single(m => m.NoteId == noteId);
             if (note == null)
             {
                 return HttpNotFound();
@@ -91,7 +106,7 @@ namespace DeveloperNotes.Controllers
                 newNote.PublishDateUtc = DateTime.UtcNow;
                 newNote.LastEditedDateUtc = DateTime.UtcNow;
 
-                _context.Note.Add(newNote);
+                _context.Notes.Add(newNote);
                 _context.Revisions.Add(newNote.CreateNewRevision(HttpContext.User.GetUserId()));
                 _context.SaveChanges();
 
@@ -110,7 +125,7 @@ namespace DeveloperNotes.Controllers
                 return HttpNotFound();
             }
 
-            Note note = _context.Note.Single(m => m.NoteId == noteId);
+            Note note = _context.Notes.Single(m => m.NoteId == noteId);
             if (note == null)
             {
                 return HttpNotFound();
@@ -126,7 +141,7 @@ namespace DeveloperNotes.Controllers
         {
             if (ModelState.IsValid)
             {
-                Note existingNote = _context.Note.Single(n => n.NoteId == noteViewModel.NoteId);
+                Note existingNote = _context.Notes.Single(n => n.NoteId == noteViewModel.NoteId);
 
                 existingNote.Title = noteViewModel.Title;
                 existingNote.Content = noteViewModel.Content;
@@ -151,7 +166,7 @@ namespace DeveloperNotes.Controllers
                 return HttpNotFound();
             }
 
-            Note note = _context.Note.Single(m => m.NoteId == noteId);
+            Note note = _context.Notes.Single(m => m.NoteId == noteId);
 
             if (note == null)
             {
@@ -212,7 +227,7 @@ namespace DeveloperNotes.Controllers
                 return HttpNotFound();
             }
 
-            Note note = this._context.Note.Single(m => m.NoteId == noteId);
+            Note note = this._context.Notes.Single(m => m.NoteId == noteId);
             Revision revision = this._context.Revisions.Single(m => m.NoteId == noteId && m.RevisionNumber == revisionNumber);
 
             if (note == null || revision == null)
@@ -239,7 +254,8 @@ namespace DeveloperNotes.Controllers
                 return HttpNotFound();
             }
 
-            Note note = _context.Note.Single(m => m.NoteId == noteId);
+            Note note = _context.Notes.Single(m => m.NoteId == noteId);
+
             if (note == null)
             {
                 return HttpNotFound();
@@ -253,12 +269,21 @@ namespace DeveloperNotes.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int noteId)
         {
-            Note note = _context.Note.Include(m => m.Revisions).Single(m => m.NoteId == noteId);
+            Note note = _context.Notes.Include(m => m.Revisions).Single(m => m.NoteId == noteId);
 
-            _context.Note.Remove(note);
+            _context.Notes.Remove(note);
             _context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        private bool customContains(string title, string[] queries)
+        {
+            foreach(string query in queries)
+            {
+                if (title.ToLower().Contains(query.ToLower())) return true;
+            }
+            return false;
         }
     }
 }

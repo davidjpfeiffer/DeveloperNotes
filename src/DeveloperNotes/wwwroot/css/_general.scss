@@ -9,9 +9,12 @@
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.container {
+    padding: 0 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 5px 0;
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
@@ -21,22 +24,39 @@ textarea {
     //max-width: 280px;
 }
 
-/* Carousel */
-.carousel-caption {
-    z-index: 10 !important;
+.form-horizontal .form-group {
+    margin: 0 0 15px 0;
 }
 
-    .carousel-caption p {
-        font-size: 20px;
-        line-height: 1.4;
-    }
+.manage-content {
+    padding: 20px 40px;
+    margin-bottom: -15px;
+    background: #ddd;
+    border-bottom: 15px solid #eee;
+    border-radius: 5px;
 
+    h2 {
+        margin: 0;
+        padding: 6px 0;
+        font-size: 31px;
+        font-weight: bold;
+        color: #193A5A;
+        padding: 0;
+    }
+}
+
+.list-group {
+    margin: 20px 0;
+}
+
+/* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-    .carousel-caption {
-        z-index: 10 !important;
-    }
 }
 
-#textbox {
-    min-height: 500px;
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
 }

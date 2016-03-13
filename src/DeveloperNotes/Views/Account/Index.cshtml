@@ -4,20 +4,21 @@
 }
 
 <div class="header">
-    <div class="container body-content">
+    <div class="container">
         <h1 class="">@ViewData["Title"]</h1>
     </div>
 </div>
 
 <p class="text-success">@ViewData["StatusMessage"]</p>
 
-<div class="container body-content">
-    <div class="row">
-        <div class="col-sm-2">
-            @await Html.PartialAsync("_AccountMenu")
-        </div>
-        <div class="col-sm-10">
-            <p>Welcome to the account page.</p>
-        </div>
+<div class="container">
+    <ul class="nav nav-tabs margin-bottom">
+        <li role="presentation" class="active"><a asp-action="Index">Home</a></li>
+        <li role="presentation"><a asp-action="Messages">Messages <span class="badge">4</span></a></li>
+        <li role="presentation"><a asp-action="Admin">Admin <span class="badge">4</span></a></li>
+        <li role="presentation"><a asp-action="Settings">Settings</a></li>
+    </ul>
+    <div>
+        <p>Welcome to the account page.</p>
     </div>
 </div>

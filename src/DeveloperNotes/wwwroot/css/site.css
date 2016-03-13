@@ -1,9 +1,3 @@
-.float-container h6 {
-  margin: 0;
-  padding: 6px 0;
-  font-size: 31px;
-  font-weight: bold; }
-
 .float-container .float-left {
   margin-bottom: 20px;
   text-align: center; }
@@ -20,12 +14,10 @@
   .float-container {
     clear: both;
     overflow: auto; }
-    .float-container h6 {
-      padding: 0; }
     .float-container .float-left {
       float: left;
       display: inline;
-      max-width: 40%;
+      max-width: 60%;
       margin: 0;
       text-align: left; }
     .float-container .float-right {
@@ -49,26 +41,36 @@ body {
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
-.body-content {
-  padding-left: 15px;
-  padding-right: 15px; }
+.container {
+  padding: 0 15px; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 5px 0; }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
-/* Carousel */
-.carousel-caption {
-  z-index: 10 !important; }
+.form-horizontal .form-group {
+  margin: 0 0 15px 0; }
 
-.carousel-caption p {
-  font-size: 20px;
-  line-height: 1.4; }
+.manage-content {
+  padding: 20px 40px;
+  margin-bottom: -15px;
+  background: #ddd;
+  border-bottom: 15px solid #eee;
+  border-radius: 5px; }
+  .manage-content h2 {
+    margin: 0;
+    padding: 6px 0;
+    font-size: 31px;
+    font-weight: bold;
+    color: #193A5A;
+    padding: 0; }
 
-@media (min-width: 768px) {
-  .carousel-caption {
-    z-index: 10 !important; } }
+.list-group {
+  margin: 20px 0; }
 
-#textbox {
-  min-height: 500px; }
-
+/* Small devices (tablets, 768px and up) */
+/* Medium devices (desktops, 992px and up) */
+/* Large devices (large desktops, 1200px and up) */
 .navbar {
   border: none; }
 
@@ -83,24 +85,41 @@ body {
     color: #fff;
     font-size: 35px;
     font-weight: bold; }
-  .header .btn {
-    font-weight: bold;
-    padding: 8px 12px; }
+  .header p {
+    margin: 0;
+    padding-top: 10px;
+    color: #eee;
+    font-size: 18px; }
   .header .btn-header {
     background: #008000;
     border: 1px solid #008000;
-    color: #000; }
+    color: #000;
+    font-weight: bold;
+    padding: 8px 12px; }
     .header .btn-header:hover {
       background: #198C19;
       border: 1px solid #198C19; }
+  .header.header-homepage {
+    text-align: center; }
+    .header.header-homepage h1 {
+      margin: 20px auto 40px auto; }
+    .header.header-homepage form {
+      max-width: 850px;
+      margin: 20px auto; }
 
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */
+.margin-bottom {
+  margin-bottom: 20px; }
+
+.margin-top {
+  margin-top: 20px; }
+
 .note {
   padding: 20px 40px;
   background: #eee;
-  margin: 15px auto; }
+  border-radius: 5px; }
   .note .note-content {
     padding: 10px 0; }
   .note .meta {
@@ -112,11 +131,11 @@ body {
   .note li {
     font-size: 18px;
     padding: 3px; }
-  .note h2 {
+  .note h3 {
     font-size: 30px;
     font-weight: bold;
-    margin: 15px 0; }
-  .note h3 {
+    margin-top: 0; }
+  .note h4 {
     font-size: 20px;
     font-weight: bold;
     margin: 10px 0;
@@ -133,3 +152,22 @@ body {
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */
+.notebook {
+  padding: 20px 40px;
+  background: #eee;
+  border-radius: 5px;
+  margin: 0 auto; }
+  .notebook h3 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 0; }
+  .notebook p {
+    font-size: 18px;
+    margin: 0 0 15px 0; }
+  .notebook hr {
+    display: block;
+    height: 0px;
+    border: 0;
+    border-top: 3px solid #ccc;
+    margin: 1em 0;
+    padding: 0; }
