@@ -1,0 +1,33 @@
+@model NoteManager.Models.Note
+
+@{
+    ViewData["Title"] = "Notes";
+}
+
+<div class="header">
+    <div class="container">
+        <h1 class="">@ViewData["Title"]</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="manage-content float-container">
+        <div class="float-left">
+            <h2>Manage Note</h2>
+        </div>
+
+        <div class="float-right">
+            <a asp-controller="Notes" asp-action="Edit" class="btn btn-default">Edit</a>
+            <a asp-controller="Notes" asp-action="Delete" class="btn btn-default">Delete</a>
+            <a asp-controller="Notes" asp-action="Revisions" class="btn btn-default">View Revisions</a>
+        </div>
+    </div>
+
+    @Html.DisplayForModel(Model)
+</div>
+
+@section Scripts {
+    <link href="~/lib/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" rel="stylesheet" />
+    <script src="~/lib/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+    <script src="~/lib/ckeditor/initTarget.js"></script>
+}

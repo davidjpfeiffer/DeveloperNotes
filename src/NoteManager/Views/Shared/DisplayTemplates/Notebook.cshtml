@@ -1,0 +1,13 @@
+﻿@model NoteManager.Models.Notebook
+
+<div class="notebook">
+    <h3>@Html.DisplayFor(model => model.Name)</h3>
+    <p>@Html.DisplayFor(model => model.Description)</p>
+    <hr />
+    <div class="list-group">
+        @foreach (var item in Model.Notes)
+        {
+            <a asp-controller="Notes" asp-action="View" asp-route-noteId="@item.NoteId" class="list-group-item">@Html.DisplayFor(modelItem => item.Title)</a>
+        }
+    </div>
+</div>

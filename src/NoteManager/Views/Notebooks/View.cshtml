@@ -1,0 +1,32 @@
+@model NoteManager.Models.Notebook
+
+@{
+    ViewData["Title"] = Model.Name;
+    ViewData["Description"] = Model.Description;
+}
+
+<div class="header float-container">
+    <div class="container">
+        <div class="float-left">
+            <h1 class="container">Notebooks</h1>
+        </div>
+        <div class="float-right">
+            <a asp-controller="Notebooks" asp-action="ViewNotesToAdd" class="btn btn-header">Add Note</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="manage-content float-container">
+        <div class="float-left">
+            <h2>Manage Notebook</h2>
+        </div>
+
+        <div class="float-right">
+            <a asp-controller="Notebooks" asp-action="Edit" class="btn btn-default">Edit</a>
+            <a asp-controller="Notebooks" asp-action="Delete" asp-route-notebookId="@Model.NotebookId" class="btn btn-default">Delete</a>
+        </div>
+    </div>
+
+    @Html.DisplayForModel(Model)
+</div>

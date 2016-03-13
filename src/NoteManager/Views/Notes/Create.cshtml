@@ -1,0 +1,43 @@
+@model NoteManager.Models.NoteViewModel
+
+@{
+    ViewData["Title"] = "New Note";
+}
+
+<div class="header">
+    <div class="container">
+        <h1 class="">@ViewData["Title"]</h1>
+    </div>
+</div>
+
+<div class="container">
+    <form asp-controller="Notes" asp-action="Create">
+        <div class="form-horizontal">
+            <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Title" class="form-control input-lg" placeholder="Note Title" />
+                <span asp-validation-for="Title" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <textarea asp-for="Content" class="form-control" id="editor"></textarea>
+                <span asp-validation-for="Content" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <div class="text-right">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-default">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <script src="~/lib/ckeditor/initEditor.js"></script>
+    <link href="~/lib/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" rel="stylesheet" />
+    <script src="~/lib/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+}
