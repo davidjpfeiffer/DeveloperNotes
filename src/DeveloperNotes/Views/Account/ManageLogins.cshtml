@@ -11,15 +11,17 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm-2">
-            @await Html.PartialAsync("_AccountMenu")
-        </div>
-        <div class="col-sm-10">
-            <p class="text-success">@ViewData["StatusMessage"]</p>
-            @if (Model.CurrentLogins.Count > 0)
+    <ul class="nav nav-tabs margin-bottom">
+        <li role="presentation"><a asp-action="Index">Home</a></li>
+        <li role="presentation"><a asp-action="Messages">Messages <span class="badge">4</span></a></li>
+        <li role="presentation"><a asp-action="Admin">Admin <span class="badge">4</span></a></li>
+        <li role="presentation" class="active"><a asp-action="Settings">Settings</a></li>
+    </ul>
+    <div>
+        <p class="text-success">@ViewData["StatusMessage"]</p>
+        @if (Model.CurrentLogins.Count > 0)
             {
-                <h4>Registered Logins</h4>
+            <h4>Registered Logins</h4>
                 <table class="table">
                     <tbody>
                         @foreach (var account in Model.CurrentLogins)
@@ -46,10 +48,10 @@
                         }
                     </tbody>
                 </table>
-            }
-            @if (Model.OtherLogins.Count > 0)
+        }
+        @if (Model.OtherLogins.Count > 0)
             {
-                <h4>Add another service to log in.</h4>
+            <h4>Add another service to log in.</h4>
                 <hr />
                 <form asp-controller="Manage" asp-action="LinkLogin" method="post" class="form-horizontal" role="form">
                     <div id="socialLoginList">
@@ -61,7 +63,6 @@
                         </p>
                     </div>
                 </form>
-            }
-        </div>
+        }
     </div>
 </div>

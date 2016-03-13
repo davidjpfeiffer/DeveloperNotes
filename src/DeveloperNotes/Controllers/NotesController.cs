@@ -25,17 +25,32 @@ namespace DeveloperNotes.Controllers
         // GET: Notes
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Index(string q)
+        public IActionResult Index()
+        {
+            List<Note> notes = _context.Notes.Include(n => n.Creator).ToList();
+
+            notes.ForEach(n => n.PublishDateUtc = n.PublishDateUtc.ToLocalTime());
+            notes.ForEach(n => n.LastEditedDateUtc = n.LastEditedDateUtc.ToLocalTime());
+            notes.Reverse();
+
+            return View(notes);
+        }
+
+        // GET: Notes/Search
+        [HttpGet("Search")]
+        [AllowAnonymous]
+        public IActionResult Search(string q)
         {
             List<Note> notes;
 
             if (String.IsNullOrEmpty(q))
             {
-                notes = _context.Notes.Include(n => n.Creator).ToList();
+                notes = new List<Note>();
             }
             else
             {
-                notes = _context.Notes.Include(n => n.Creator).Where(n => n.Title.Contains(q)).ToList();
+                string[] queries = q.Split(' ', '-');
+                notes = _context.Notes.Include(n => n.Creator).Where(n => customContains(n.Title, queries)).ToList();
             }
 
             notes.ForEach(n => n.PublishDateUtc = n.PublishDateUtc.ToLocalTime());
@@ -260,6 +275,15 @@ namespace DeveloperNotes.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        private bool customContains(string title, string[] queries)
+        {
+            foreach(string query in queries)
+            {
+                if (title.ToLower().Contains(query.ToLower())) return true;
+            }
+            return false;
         }
     }
 }

@@ -44,6 +44,9 @@ body {
 .container {
   padding: 0 15px; }
 
+h1, h2, h3, h4, h5, h6 {
+  margin: 5px 0; }
+
 /* Set widths on the form inputs since otherwise they're 100% wide */
 .form-horizontal .form-group {
   margin: 0 0 15px 0; }
@@ -107,6 +110,12 @@ body {
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */
+.margin-bottom {
+  margin-bottom: 20px; }
+
+.margin-top {
+  margin-top: 20px; }
+
 .note {
   padding: 20px 40px;
   background: #eee;
@@ -147,8 +156,7 @@ body {
   padding: 20px 40px;
   background: #eee;
   border-radius: 5px;
-  margin: 0 auto;
-  text-align: center; }
+  margin: 0 auto; }
   .notebook h3 {
     font-size: 30px;
     font-weight: bold;

@@ -34,6 +34,30 @@ namespace DeveloperNotes.Controllers
             return View(notebooks);
         }
 
+        // GET: Notebooks/Search
+        [HttpGet("Search")]
+        [AllowAnonymous]
+        public IActionResult Search(string q)
+        {
+            List<Notebook> notebooks;
+
+            if (String.IsNullOrEmpty(q))
+            {
+                notebooks = new List<Notebook>();
+            }
+            else
+            {
+                string[] queries = q.Split(' ', '-');
+                notebooks = _context.Notebooks.Include(n => n.Creator).Where(n => customContains(n.Name, queries)).ToList();
+            }
+
+            notebooks.ForEach(n => n.CreatedDateUtc = n.CreatedDateUtc.ToLocalTime());
+            notebooks.Reverse();
+
+            ViewData["Query"] = q;
+            return View(notebooks);
+        }
+
         // GET: Notebooks/5
         [HttpGet("{notebookId}")]
         [AllowAnonymous]
@@ -224,6 +248,15 @@ namespace DeveloperNotes.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        private bool customContains(string title, string[] queries)
+        {
+            foreach (string query in queries)
+            {
+                if (title.ToLower().Contains(query.ToLower())) return true;
+            }
+            return false;
         }
     }
 }

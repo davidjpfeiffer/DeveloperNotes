@@ -8,8 +8,7 @@
 <div class="header float-container">
     <div class="container">
         <div class="float-left">
-            <h1 class="container">@ViewData["Title"]</h1>
-            <p>@ViewData["Description"]</p>
+            <h1 class="container">Notebooks</h1>
         </div>
         <div class="float-right">
             <a asp-controller="Notebooks" asp-action="ViewNotesToAdd" class="btn btn-header">Add Note</a>
@@ -30,11 +29,4 @@
     </div>
 
     @Html.DisplayForModel(Model)
-
-    <div class="list-group">
-        @foreach (var item in Model.Notes)
-        {
-            <a asp-controller="Notes" asp-action="View" asp-route-noteId="@item.NoteId" class="list-group-item">@Html.DisplayFor(modelItem => item.Title)</a>
-        }
-    </div>
 </div>

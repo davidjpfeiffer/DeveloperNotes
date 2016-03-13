@@ -1,7 +1,7 @@
-@model IEnumerable<DeveloperNotes.Models.Notebook>
+﻿@model IEnumerable<DeveloperNotes.Models.Note>
 
 @{
-    ViewData["Title"] = "Notebooks";
+    ViewData["Title"] = "Search Notes";
 }
 
 <div class="header float-container">
@@ -10,14 +10,14 @@
             <h1 class="container">@ViewData["Title"]</h1>
         </div>
         <div class="float-right">
-            <a asp-controller="Notebooks" asp-action="Create" class="btn btn-header">New Notebook</a>
+            <a asp-controller="Notes" asp-action="Create" class="btn btn-header">New Note</a>
         </div>
     </div>
 </div>
 
 <div class="container">
     <div class="well">
-        <form asp-controller="Notebooks" asp-action="Search" method="get">
+        <form asp-controller="Notes" asp-action="Search" method="get">
             <div class="input-group">
                 <input name="q" type="text" class="form-control" placeholder="Search..." value="@ViewData["Query"]" />
                 <span class="input-group-btn">
@@ -29,7 +29,7 @@
     <div class="list-group">
         @foreach (var item in Model)
         {
-            <a asp-controller="Notebooks" asp-action="View" asp-route-notebookId="@item.NotebookId" class="list-group-item">@Html.DisplayFor(modelItem => item.Name)</a>
+            <a asp-controller="Notes" asp-action="View" asp-route-noteId="@item.NoteId" class="list-group-item">@Html.DisplayFor(modelItem => item.Title)</a>
         }
     </div>
 </div>
