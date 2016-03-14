@@ -5,23 +5,37 @@ I built this website to learn the ASP 5 framework. The website allows for note c
 
 Feel free to pull the project and check it out. You can create an account and walk through the basic note creation process after a brief initial setup:
 
-# Project Setup
-Clone the project from this Github repository
+### Project Setup
 
 To run this project, you must install ASP 5 on your computer. You can install via visual studio or command line from Microsoft https://docs.asp.net/en/latest/getting-started/installing-on-windows.html
 
-Once installed, you must enable the ASP 5 command-line tools using the following command:
+Once installed, enable the ASP 5 command-line tools
 
-dnvm upgrade
+```
+$ dnvm upgrade
+```
 
-Now that you have access to the command line tools, navigate to the Note Manager project directory. We must setup an initial migration for our database using the following commands (run in this order):
+Clone the project from this Github repository and navigate to the project directory
 
-dnu restore
+```
+$ git clone https://github.com/davidjpfeiffer/NoteManager
+$ cd NodeManager
+```
 
-dnvm use 1.0.0-rc1-final -p
+Now that you have access to the command line tools, we must setup an initial migration for our database
 
-dnx ef migrations add Initial
+```
+$ dnu restore
+$ dnvm use 1.0.0-rc1-final -p
+$ dnx ef migrations add Initial
+$ dnx ef database update
+```
 
-dnx ef database update
+Next we install our Node packages and run a Gulp build
 
-Open the project in Visual Studio. In the Task Runner Explorer run the Gulp build task and MS build the project. You should now be able to run the project using IIS Express.
+```
+$ npm install
+$ gulp build
+```
+
+Open the project in Visual Studio. You should now be able to run the project using IIS Express.
