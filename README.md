@@ -18,8 +18,8 @@ $ dnvm upgrade
 Clone the project from this Github repository and navigate to the project directory
 
 ```
-$ git clone https://github.com/davidjpfeiffer/NoteManager
-$ cd NodeManager
+$ git clone https://github.com/davidjpfeiffer/note-manager
+$ cd note-manager
 ```
 
 Now that you have access to the command line tools, we must setup an initial migration for our database
