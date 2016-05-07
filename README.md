@@ -1,7 +1,6 @@
 # ASP 5 Note Manager
-ASP 5 Note Management Website
 
-I built this website to learn the ASP 5 framework. The website allows for note creation and management. You can create notebooks to organize notes, and keep track of changes to notes through revisions.
+This project was built by David Pfeiffer to learn about the ASP 5 framework. The website allows users to create notes and notebooks and has built in features to manage both.
 
 Feel free to pull the project and make changes. You can create an account and walk through the basic note creation process after a brief initial setup.
 
