@@ -1,8 +1,16 @@
 # ASP 5 Note Manager
 
-This project was built by David Pfeiffer to learn about the ASP 5 framework. The website allows users to create notes and notebooks and has built in features to manage both.
+This project was built by David Pfeiffer to learn about the ASP 5 framework. The project follows the code first design pattern and uses Entity Framework 7 as a relational database mapper.
 
 Feel free to pull the project and make changes. You can create an account and walk through the basic note creation process after a brief initial setup.
+
+### Features
+
+<ul>
+<li>Account management and basic authentication</li>
+<li>Note and notebook management</li>
+<li>History of note changes</li>
+</ul>
 
 ### Project Setup
 
