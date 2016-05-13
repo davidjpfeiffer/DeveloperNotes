@@ -8,7 +8,7 @@ Feel free to pull the project and make changes. You can create an account and wa
 
 * Account management and basic authentication
 * Note and notebook management
-* * History of note changes
+* History of note changes
 
 ### Project Setup
 
