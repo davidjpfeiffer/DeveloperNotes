@@ -6,11 +6,9 @@ Feel free to pull the project and make changes. You can create an account and wa
 
 ### Features
 
-<ul>
-<li>Account management and basic authentication</li>
-<li>Note and notebook management</li>
-<li>History of note changes</li>
-</ul>
+* Account management and basic authentication
+* Note and notebook management
+* * History of note changes
 
 ### Project Setup
 
